@@ -142,5 +142,3 @@ Kubernetes deployment support
 👨‍💻 Author
 Mahmoud Bahnsey
 Cybersecurity & Networking Student
-
-ن
