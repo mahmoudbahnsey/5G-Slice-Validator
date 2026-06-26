@@ -1,53 +1,144 @@
-# 5G Slice Validator
+🚀 5G Slice Validator
 
-Python toolkit that checks **5G SA** configuration consistency (DNN, TAC, S-NSSAI), analyzes **Open5GS** and **UERANSIM** logs, classifies **NAS/SM causes**, infers **root cause**, and exposes results in a **Streamlit** dashboard with **JSON/Markdown** reports.
+Automated 5G Standalone (SA) Slice Validation & Root Cause Analysis Tool
 
-## Requirements
+A Python-based framework that validates 5G network slicing configurations, analyzes Open5GS / UERANSIM logs, detects misconfigurations (DNN, TAC, S-NSSAI), and provides explainable root cause diagnosis with structured reports and a Streamlit dashboard.
 
-- Python 3.10+
-- Dependencies: `pip install -r requirements.txt`
+📌 Project Highlights
+✔ 5G SA configuration validation (UE, gNB, AMF, Subscriber)
+✔ Log parsing for Open5GS / UERANSIM scenarios
+✔ Detection of:
+Wrong DNN
+TAC mismatch
+Slice (S-NSSAI) mismatch
+SMF failure scenarios
+✔ Rule-based Root Cause Analysis engine
+✔ JSON + Markdown report generation
+✔ Interactive Streamlit dashboard
+✔ Fully reproducible test scenarios
+🧠 Problem Statement
 
-## Quick start
+In 5G Standalone environments, failures in registration or PDU session establishment are often caused by subtle configuration mismatches across network functions.
 
-```bash
-# Run validation (default: logs/scenario_success.log + configs/)
+Manually debugging these issues requires:
+
+Comparing multiple YAML configuration files
+Analyzing large log files
+Interpreting NAS / SM cause codes
+
+This process is slow and error-prone.
+
+🎯 Solution
+
+This tool automates the entire troubleshooting pipeline:
+
+Configs + Logs → Parser → Validators → Diagnosis Engine → Reports + Dashboard
+
+It converts raw logs and configurations into:
+
+✔ Structured validation results
+✔ Human-readable root cause explanation
+✔ Actionable troubleshooting recommendations
+🏗️ System Architecture
+Layer	Component	Responsibility
+Configuration Layer	YAML files	Define UE / gNB / AMF / Subscriber setup
+Parsing Layer	parser/	Extract events & cause codes from logs
+Validation Layer	validator/	Check registration, PDU session, consistency
+Diagnosis Layer	diagnosis engine	Identify root cause
+Reporting Layer	reports/	Generate JSON & Markdown outputs
+UI Layer	dashboard/	Visualize results in Streamlit
+⚙️ How It Works
+Select scenario (success, wrong_dnn, wrong_tac, wrong_slice, smf_down)
+Load corresponding configs + logs
+Parse log events and NAS/SM messages
+Run validation rules
+Correlate evidence
+Generate root cause + recommendations
+Export reports + dashboard view
+📂 Project Structure
+5g-slice-validator/
+│
+├── main.py                  # CLI entry point
+├── scenarios.py            # Scenario mappings
+├── configs/                # Network configuration (YAML)
+├── logs/                   # Sample 5G logs
+├── parser/                 # Log parsing engine
+├── validator/              # Validation + diagnosis logic
+├── reports/                # Output reports (JSON/MD)
+├── dashboard/              # Streamlit UI
+├── tests/                  # Unit & integration tests
+├── tools/                  # Scenario automation scripts
+└── documentation/          # Full project documentation (PDF)
+▶️ Installation
+# Clone repository
+git clone https://github.com/mahmoudbahnsey/5G-Slice-Validator.git
+
+cd 5G-Slice-Validator
+
+# Install dependencies
+pip install -r requirements.txt
+🚀 Usage
+Run default scenario
 python main.py
-
-# Bundled demos
+Run specific scenarios
 python main.py --scenario success
 python main.py --scenario wrong_dnn
 python main.py --scenario wrong_tac
 python main.py --scenario wrong_slice
 python main.py --scenario smf_down
+📊 Dashboard
 
-# Outputs
-#   reports/last_run.json
-#   reports/last_run.md
-```
+Launch interactive UI:
 
-## Dashboard
-
-```bash
 streamlit run dashboard/app.py
-```
 
-Use the sidebar to pick a scenario and **Run validation now**, or load `reports/last_run.json`.
+Then open:
 
-## Tests
+http://localhost:8501
+🧪 Testing
 
-```bash
+Run automated tests:
+
 python -m pytest tests -q
-```
 
-## Layout
+Expected output:
 
-See `configs/`, `logs/`, `parser/`, `validator/`, `dashboard/`, `reports/`, and `scenarios.py` for demo mappings.
+9 passed
+📦 Outputs
 
-## Production notes
+The tool generates:
 
-- Set `configs/runtime_probe.yaml` to `mode: systemd` on Linux to probe real Open5GS units (requires `systemctl`).
-- Replace demo logs under `logs/` with captures from your lab.
+reports/last_run.json → Machine-readable results
+reports/last_run.md → Human-readable report
+Streamlit dashboard visualization
+🧪 Supported Scenarios
+Scenario	Description	Result
+success	Valid 5G configuration	PASS
+wrong_dnn	Invalid DNN configuration	FAIL
+wrong_tac	TAC mismatch	FAIL
+wrong_slice	Slice mismatch (S-NSSAI)	FAIL
+smf_down	SMF service unavailable	FAIL
+⚠️ Limitations
+Works on simulated / offline logs
+Rule-based (not AI/ML trained model)
+Requires predefined scenario structure
+Dashboard is basic (future improvement needed)
+🚀 Future Improvements
+Live Open5GS integration (real-time logs)
+AI-based root cause prediction
+Advanced dashboard analytics
+Multi-operator support
+Export PDF automated reports
+Kubernetes-based deployment support
+👨‍💻 Author
 
-## Report for submission
+Mahmoud Bahnsey
+Cybersecurity & Networking Student
 
-Use `reports/FINAL_REPORT_TEMPLATE.md` as the skeleton for your course final report.
+📜 License
+
+This project is for academic and educational use.
+
+⭐ If you like it
+
+Give the repo a ⭐ on GitHub to support development.
