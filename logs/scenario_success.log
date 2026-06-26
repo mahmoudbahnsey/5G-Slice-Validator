@@ -1,0 +1,8 @@
+Open5GS AMF: Initial Registration Request [SUPI: imsi-001010123456789]
+Open5GS AMF: Authentication request
+Open5GS AMF: Security mode complete
+Open5GS AMF: Registration accept
+Open5GS SMF: PDU session establishment accept DNN=internet
+Open5GS SMF: UE IPv4 address: 10.45.0.2
+UERANSIM: [NAS] Registration accept
+UERANSIM: PDU session is activated UE IPv4 10.45.0.2

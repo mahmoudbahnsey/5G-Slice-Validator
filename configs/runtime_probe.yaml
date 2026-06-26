@@ -1,0 +1,17 @@
+# Core health: systemd on Linux, mock elsewhere or when mode=mock
+mode: mock
+# mode: systemd   # uses systemctl is-active for units below
+systemd_units:
+  AMF: open5gs-amfd.service
+  SMF: open5gs-smfd.service
+  UPF: open5gs-upfd.service
+  NRF: open5gs-nrfd.service
+  UDM: open5gs-udmd.service
+  AUSF: open5gs-ausfd.service
+mock_status:
+  AMF: UP
+  SMF: UP
+  UPF: UP
+  NRF: UP
+  UDM: UP
+  AUSF: UP

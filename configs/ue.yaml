@@ -1,0 +1,12 @@
+# UERANSIM UE profile (aligned with Open5GS subscriber)
+supi: "imsi-001010123456789"
+mcc: "001"
+mnc: "01"
+key: "465B5CE8B199B49FAA5F0A2EE238A6BC"
+op: "E8ED289DEBA952E4283BBAE988F0C78F"
+amf: "8000"
+dnn: "internet"
+s_nssai:
+  sst: 1
+  sd: "010203"
+tac: 1

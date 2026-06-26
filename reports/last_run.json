@@ -1,0 +1,106 @@
+{
+  "project": "5G Slice Validator",
+  "config_dir": "F:\\courses1\\RoutingAndSwitching\\project\\5g-slice-validator\\configs",
+  "logs": [
+    "F:\\courses1\\RoutingAndSwitching\\project\\5g-slice-validator\\logs\\scenario_success.log"
+  ],
+  "module_1_core_health": {
+    "mode": "mock",
+    "components": {
+      "AMF": "UP",
+      "SMF": "UP",
+      "UPF": "UP",
+      "NRF": "UP",
+      "UDM": "UP",
+      "AUSF": "UP"
+    },
+    "notes": []
+  },
+  "module_2_registration": {
+    "status": "PASS",
+    "steps": {
+      "initial_registration_request": true,
+      "authentication_request": true,
+      "security_mode_complete": true,
+      "registration_accept": true
+    },
+    "reason": null
+  },
+  "module_3_pdu_session": {
+    "status": "PASS",
+    "has_ip": true,
+    "session_active": true,
+    "reachable_upf": null,
+    "reason": null,
+    "details": {
+      "ip_list": [
+        "10.45.0.2"
+      ]
+    }
+  },
+  "module_4_config_consistency": {
+    "overall": "PASS",
+    "checks": [
+      {
+        "check": "dnn_consistency",
+        "status": "PASSED",
+        "expected": "internet",
+        "actual": "internet",
+        "detail": "UE requested DNN must match subscriber profile"
+      },
+      {
+        "check": "ue_gnb_tac",
+        "status": "PASSED",
+        "expected": "1",
+        "actual": "1",
+        "detail": "UE TAC must match gNB TAC"
+      },
+      {
+        "check": "gnb_amf_tac",
+        "status": "PASSED",
+        "expected": "one of [1]",
+        "actual": "1",
+        "detail": "gNB TAC must be listed in AMF TAI configuration"
+      },
+      {
+        "check": "slice_ue_subscriber",
+        "status": "PASSED",
+        "expected": "sst=1, sd=010203",
+        "actual": "sst=1, sd=010203",
+        "detail": "UE slice must match subscriber slice"
+      },
+      {
+        "check": "slice_ue_amf",
+        "status": "PASSED",
+        "expected": "AMF offers [(1, '010203')]",
+        "actual": "sst=1, sd=010203",
+        "detail": "UE slice must be supported by AMF PLMN configuration"
+      },
+      {
+        "check": "plmn_consistency",
+        "status": "PASSED",
+        "expected": "00101",
+        "actual": "00101",
+        "detail": "UE PLMN should match subscriber PLMN"
+      }
+    ]
+  },
+  "module_5_parser_summary": {
+    "causes_mm": [],
+    "causes_sm": [],
+    "ip_addresses": [
+      "10.45.0.2"
+    ],
+    "events": []
+  },
+  "module_6_diagnosis": {
+    "summary": "Registration and PDU session appear healthy in captured artifacts",
+    "root_cause": "No dominant failure pattern detected",
+    "confidence": "low",
+    "recommendations": [
+      "Continue monitoring; capture extended traces for intermittent issues."
+    ],
+    "evidence": []
+  },
+  "aggregate_status": "PASS"
+}

@@ -1,0 +1,8 @@
+mode: mock
+mock_status:
+  AMF: UP
+  SMF: DOWN
+  UPF: UP
+  NRF: UP
+  UDM: UP
+  AUSF: UP

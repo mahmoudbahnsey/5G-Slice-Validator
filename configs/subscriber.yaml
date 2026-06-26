@@ -1,0 +1,9 @@
+# Logical subscriber profile (UDM/SMF expectation) for consistency checks
+supi: "imsi-001010123456789"
+subscribed_dnn: "internet"
+subscribed_slice:
+  sst: 1
+  sd: "010203"
+plmn:
+  mcc: "001"
+  mnc: "01"

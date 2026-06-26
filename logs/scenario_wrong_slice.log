@@ -1,0 +1,6 @@
+Open5GS AMF: Initial Registration Request
+Open5GS AMF: Registration accept
+Open5GS SMF: PDU session establishment reject sm cause 62
+Open5GS SMF: PDU_SESSION_ESTABLISHMENT_REJECT cause=62
+Open5GS SMF: Missing slice / NSSAI mismatch
+UERANSIM: PDU session rejected

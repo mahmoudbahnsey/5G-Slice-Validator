@@ -1,0 +1,5 @@
+Open5GS AMF: Initial Registration Request
+Open5GS AMF: Registration accept
+Open5GS SMF: pdu_session_establishment_reject
+Open5GS SMF: PDU_SESSION_ESTABLISHMENT_REJECT cause=27
+UERANSIM: Session establishment failed
