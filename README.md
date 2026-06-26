@@ -1,150 +1,146 @@
-🚀 5G Slice Validator
-Intelligent 5G Standalone Network Troubleshooting & Root Cause Intelligence Platform
+# 🚀 5G Slice Validator
 
-A simulation-grade diagnostic engine that transforms raw 5G logs and configuration data into structured root cause intelligence, enabling rapid troubleshooting of network slicing failures in 5G SA environments.
+**Automated 5G Standalone (SA) Slice Validation & Root Cause Analysis Platform**
 
-Built for network engineers, SOC-style analysis workflows, and telecom troubleshooting pipelines.
+A Python-based framework for validating 5G network slicing configurations, analyzing Open5GS / UERANSIM logs, detecting misconfigurations (DNN, TAC, S-NSSAI), and generating explainable root cause reports with a Streamlit dashboard.
 
-🧠 Executive Summary
+---
 
-5G Slice Validator is a telecom intelligence system that emulates real-world 5G SA troubleshooting environments.
+## 📌 Project Highlights
 
-It automatically:
+- ✔ 5G SA configuration validation (UE, gNB, AMF, Subscriber)
+- ✔ Real log parsing for Open5GS / UERANSIM
+- ✔ Detection of:
+  - Wrong DNN
+  - TAC mismatch
+  - Slice (S-NSSAI) mismatch
+  - SMF failure scenarios
+- ✔ Rule-based Root Cause Analysis engine
+- ✔ JSON + Markdown report generation
+- ✔ Interactive Streamlit dashboard
+- ✔ Fully reproducible test scenarios
 
-Ingests UE / gNB / AMF / Subscriber configurations
-Parses Open5GS / UERANSIM logs
-Detects slicing misconfigurations (DNN, TAC, S-NSSAI)
-Classifies failure scenarios
-Produces explainable root cause analysis with structured reports
+---
 
-The system is designed as a diagnostic command pipeline, not just a script.
+## 🧠 Problem Statement
 
-⚡ Why This Project Is Different
+In 5G Standalone networks, failures in registration or PDU sessions are often caused by subtle configuration mismatches across network functions.
 
-Unlike traditional log parsers, this system provides:
+Manual debugging requires:
+- Comparing multiple YAML configs
+- Reading large log files
+- Interpreting NAS/SM cause codes
 
-🧩 Hybrid Intelligence Engine
+This process is slow, error-prone, and not scalable.
 
-Combines:
+---
 
-Deterministic rule-based validation
-Log-driven behavioral analysis
-Cause-code correlation engine
-🧠 Root Cause Explanation Layer
+## 🎯 Solution
 
-Instead of just saying "FAIL", it explains:
+This tool automates the entire troubleshooting pipeline:
 
-Why it failed
-Where mismatch occurred
-Which 5G component caused it
-📊 Scenario-Based Simulation System
+It transforms raw data into:
 
-Reproducible failure environments:
+- ✔ Structured validation results  
+- ✔ Human-readable root cause explanation  
+- ✔ Actionable troubleshooting recommendations  
 
-wrong_dnn
-wrong_tac
-wrong_slice
-smf_down
-success baseline
-🔍 Telecom-Aware Diagnostics
+---
 
-Focuses on real 5G issues:
+## 🏗️ System Architecture
 
-PDU session failures
-Registration rejection flows
-Slice allocation mismatches
-🏗️ System Architecture
-Configs + Logs
-      ↓
-Log Parser Engine (regex + pattern matching)
-      ↓
-Validation Layer (5G rules engine)
-      ↓
-Diagnosis Engine (root cause correlation)
-      ↓
-Report Generator (JSON + Markdown)
-      ↓
-Dashboard (Streamlit visualization)
-🧪 Fault Intelligence Model
-Code	Meaning	Impact
-DNN mismatch	Wrong data network	PDU failure
-TAC mismatch	Tracking area error	Registration failure
-Slice mismatch	S-NSSAI unsupported	Session rejection
-SMF down	Core service failure	Session blocked
-🧠 Core Intelligence Modules
-📡 Parser Engine
-Extracts NAS / SM cause codes
-Normalizes Open5GS / UERANSIM logs
-🧾 Validation Core
-UE / gNB / AMF consistency checks
-Subscriber validation logic
-🧠 Diagnosis Engine
-Correlates multi-layer evidence
-Produces root cause + recommendation
-📊 Reporting System
-JSON machine output
-Markdown human report
-Dashboard visualization
-📂 System Layout
+| Layer | Component | Responsibility |
+|------|----------|----------------|
+| Configuration | YAML files | Define UE / gNB / AMF / Subscriber setup |
+| Parsing | parser/ | Extract log events & cause codes |
+| Validation | validator/ | Check registration, PDU session, consistency |
+| Diagnosis | engine | Identify root cause |
+| Reporting | reports/ | Generate JSON / Markdown outputs |
+| UI | dashboard/ | Streamlit visualization |
+
+---
+
+## ⚙️ How It Works
+
+1. Select scenario (`success`, `wrong_dnn`, `wrong_tac`, `wrong_slice`, `smf_down`)
+2. Load configs + logs
+3. Parse log events
+4. Run validation rules
+5. Detect failure reason
+6. Generate report + dashboard output
+
+---
+
+## 📂 Project Structure
 5g-slice-validator/
-│
-├── main.py              → Execution engine
-├── scenarios.py         → Scenario orchestration
-├── configs/             → Network definitions
-├── logs/                → Simulation logs
-├── parser/              → Log intelligence layer
-├── validator/           → Rule engine + diagnosis
-├── reports/             → Output intelligence reports
-├── dashboard/           → Visualization layer
-├── tests/               → Verification suite
-└── tools/              → Scenario automation
-🚀 Execution Flow
-Select scenario
-Load network configuration
-Parse simulated 5G logs
-Run validation engine
-Detect failure pattern
-Generate root cause explanation
-Export structured report
-📊 Dashboard Interface
+├── main.py
+├── scenarios.py
+├── configs/
+├── logs/
+├── parser/
+├── validator/
+├── reports/
+├── dashboard/
+├── tools/
+└── tests/
 
-Streamlit-based operational dashboard provides:
 
-Real-time scenario execution
-Validation status tracking
-Root cause visualization
-Historical reports view
-🧪 Supported Scenarios
-Scenario	Description	Outcome
+---
+
+## ▶️ Installation
+
+bash
+git clone https://github.com/mahmoudbahnsey/5G-Slice-Validator.git
+cd 5G-Slice-Validator
+pip install -r requirements.txt
+
+
+🚀 Usage
+python main.py
+python main.py --scenario wrong_dnn
+python main.py --scenario wrong_tac
+python main.py --scenario wrong_slice
+python main.py --scenario smf_down
+
+
+📊 Dashboard
+streamlit run dashboard/app.py
+
+Then open:
+
+http://localhost:8501
+
+
+🧪 Testing
+python -m pytest tests -q
+
+Expected:
+
+9 passed
+
+ 🧪 Supported Scenarios
+Scenario	Description       	Result
 success	Valid configuration	PASS
-wrong_dnn	Invalid DNN	FAIL
-wrong_tac	TAC mismatch	FAIL
-wrong_slice	Slice mismatch	FAIL
-smf_down	Core service failure	FAIL
-⚙️ Tech Stack
-Python 3.10+
-Regex-based log parsing
-YAML configuration system
-Streamlit dashboard
-Pytest validation framework
-🧠 Design Philosophy
+wrong_dnn	Invalid DNN       	FAIL
+wrong_tac	TAC mismatch	      FAIL
+wrong_slice	Slice mismatch	      FAIL
+smf_down	SMF down	            FAIL
 
-This project is built around three principles:
+⚠️ Limitations
+Offline / simulated logs
+Rule-based (no AI model)
+Requires predefined scenarios
+Basic dashboard UI
 
-Explainability over complexity
-Reproducibility over randomness
-Engineering realism over abstraction
+🚀 Future Improvements
+Real-time Open5GS integration
+AI-based root cause prediction
+Advanced dashboard analytics
+PDF report export
+Kubernetes deployment support
 
-The goal is not just detection — but understanding failure in 5G systems.
-
-🚀 Future Evolution
-Live Open5GS integration
-AI-assisted root cause prediction
-Real-time log streaming
-Kubernetes deployment mode
-Advanced visualization dashboards
-PDF report automation engine
 👨‍💻 Author
-
 Mahmoud Bahnsey
-Cybersecurity & Networking Engineer (Student)
+Cybersecurity & Networking Student
+
+نن
